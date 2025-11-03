@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cronograma Unificado — PMESP & Guarujá</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body data-theme="light">
+    <header>
+        <div class="container topbar">
+            <div class="big-title">
+                <h1>Cronograma de Estudos (26/09 → 02/11)</h1>
+                <div class="chip">Horas por dia: 7h – 15h</div>
+                <div class="chip">Semanas: 8</div>
+            </div>
+
+            <button class="mobile-menu-btn" id="menuToggle"><i class="bi bi-list"></i></button>
+
+            <div class="topbar-controls">
+                <select id="selectConcurso" title="Escolha o concurso">
+                    <option value="pmesp">PMESP</option>
+                    <option value="capatazia">Capatazia - Santos OGMO</option>
+                    <option value="combinado">Modo Combinado</option>
+                </select>
+
+                <input id="search" class="search" placeholder="Buscar tópico (ex: crase)" />
+                <button id="exportCsv"><i class="bi bi-download"></i> Exportar CSV</button>
+                <button id="resetAll" class="red-btn"><i class="bi bi-trash"></i> Resetar progresso</button>
+                <button id="toggleTheme"><i class="bi bi-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="wrap">
+            <section>
+                <div class="card">
+                    <nav class="week-tabs" id="weeks"></nav>
+                    <div id="weekContent"></div>
+                </div>
+
+                <div class="card" style="margin-top:12px">
+                    <h3>Observações</h3>
+                    <p class="small">Cronograma gerado automaticamente. Cada bloco pode ser marcado como concluído —
+                        progresso salvo localmente por concurso.</p>
+                    <details>
+                        <summary>O que inclui</summary>
+                        <ul class="small">
+                            <li>Distribuição por semana/dia/bloco (segunda a sábado)</li>
+                            <li>Sábados com revisões e simulados</li>
+                            <li>Busca, exportação CSV, reset e tema</li>
+                            <li>Modo combinado (mistura as disciplinas dos dois concursos)</li>
+                        </ul>
+                    </details>
+                </div>
+            </section>
+
+            <aside class="side">
+                <div class="card">
+                    <h3>Progresso da semana</h3>
+                    <div class="progress"><i id="progressBar"></i></div>
+                    <div id="progressText" class="small">0/0 blocos concluídos (0%)</div>
+
+                    <div class="controls">
+                        <button id="markWeek"><i class="bi bi-check2-circle"></i> Marcar semana completa</button>
+                        <button id="clearWeek" class="dark-btn"><i class="bi bi-x-circle"></i> Limpar semana</button>
+                        <button id="toggleAllReminders" class="export"><i class="bi bi-eye"></i> Ver conteúdo</button>
+                    </div>
+
+                    <div style="margin-top:12px">
+                        <h4 class="small">Status geral</h4>
+                        <div id="overall" class="small">Carregando...</div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:12px">
+                    <h3>Guia rápido</h3>
+                    <div class="legend small">
+                        <div class="chip">✅ Caixa para marcar</div>
+                        <div class="chip">🔁 Ciclagem de tópicos</div>
+                        <div class="chip">📝 Simulados aos sábados</div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:12px;max-height:824px;overflow:auto">
+                    <h3>Conteúdo programático</h3>
+                    <pre id="programSummary" class="small" style="white-space:pre-wrap"></pre>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="small">Projeto gerado automaticamente — me peça para exportar Excel se quiser.</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
