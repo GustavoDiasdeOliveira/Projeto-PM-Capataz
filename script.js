@@ -216,27 +216,30 @@ document.addEventListener("DOMContentLoaded", ()=>{
 function buildCombinedTopics(){
   // junta tópicos por chave entre os dois concursos (une arrays evitando duplicates)
   const combined = {};
-  for (const c of ["pmesp","capatazia"]) {
+  for (const c of ["pmesp", "capatazia"]) {
     const t = concursos[c].topics;
     for (const key in t) {
       if (!combined[key]) combined[key] = [];
-      t[key].forEach(item => { if (!combined[key].includes(item)) combined[key].push(item); });
+      t[key].forEach(item => {
+        if (!combined[key].includes(item)) combined[key].push(item);
+      });
     }
   }
-  // adiciona matérias que existem só em um dos concursos
   return combined;
 }
+
 function buildCombinedPattern(){
-  // cria um padrão semanal que mistura matérias relevantes (prioriza portugues/matematica/informatica/transito/legislação/história)
+  // cria um padrão semanal que mistura as matérias mais relevantes de ambos os concursos
   return {
-    Segunda: ["portugues","matematica","informatica","transito"],
-    Terça: ["historiaGeral","geografiaGeral","legislacaoMunicipal","matematica"],
-    Quarta: ["portugues","matematica","administracao","transito"],
-    Quinta: ["portugues","legislacaoMunicipal","informatica","transito"],
-    Sexta: ["atualidades","geografiaBrasil","historiaBrasil","revisao"],
-    Sábado: ["revisao_port","revisao_mat","revisao_transito","simulado"]
+    Segunda: ["portugues", "matematica", "informatica", "administracao"],
+    Terça: ["historiaGeral", "geografiaGeral", "legislacaoPortuaria", "ingles"],
+    Quarta: ["portugues", "matematica", "informatica", "historiaBrasil"],
+    Quinta: ["legislacaoPortuaria", "portugues", "conhecimentosEspecificos", "geografiaBrasil"],
+    Sexta: ["matematica", "informatica", "atualidades", "conhecimentosEspecificos"],
+    Sábado: ["revisao_port", "revisao_mat", "revisao_leg", "simulado"]
   };
 }
+
 
 function setConcurso(conc){
   // prepara iteradores e plano
